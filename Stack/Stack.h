@@ -1,8 +1,8 @@
-#pragma once
+п»ї#pragma once
 #include <iostream>
 #include <deque>
 
-//типа использую паттерн адаптер (нет)
+//С‚РёРїР° РёСЃРїРѕР»СЊР·СѓСЋ РїР°С‚С‚РµСЂРЅ Р°РґР°РїС‚РµСЂ (РЅРµС‚)
 
 namespace TheFulDeep {
 
