@@ -16,7 +16,7 @@ namespace TheFulDeep {
 		Stack(T val) { deque = std::deque<T>(val); }
 
 		void push(const T val) { deque.push_back(val); }
-		void pop(const size_t n = 1) { for (size_t i = 0; i < n; i++) deque.pop_front(); }
+		void pop(const size_t n = 1) { size_t ncopy = n; if (ncopy > deque.size()) ncopy = deque.size(); for (size_t i = 0; i < ncopy; i++) deque.pop_front(); }
 		bool isEmpty()const { return deque.empty(); }
 		size_t getSize()const { return deque.size(); }
 		void clean() { deque.clear(); }

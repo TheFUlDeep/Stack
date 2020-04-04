@@ -20,6 +20,11 @@ int main()
 	cout << "cout" << endl;
 	cout << a;
 
+
+	a.pop(200);
+	cout << a.getSize() << endl;
+	cout << a.isEmpty() << endl;
+
 	system("pause");
 	return 0;
 }
