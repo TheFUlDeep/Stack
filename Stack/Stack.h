@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include <iostream>
-#include <deque>
+#include "List.h"
 
 //типа использую паттерн адаптер (нет)
 
@@ -10,10 +10,10 @@ namespace TheFulDeep {
 	class Stack
 	{
 	private:
-		std::deque<T> deque;
+		List<T> deque;
 	public:
 		Stack() = default;
-		Stack(T val) { deque = std::deque<T>(val); }
+		Stack(T val) { deque = List<T>(val); }
 
 		void push(const T val) { deque.push_back(val); }
 		void pop(const size_t n = 1) { size_t ncopy = n; if (ncopy > deque.size()) ncopy = deque.size(); for (size_t i = 0; i < ncopy; i++) deque.pop_front(); }
@@ -29,8 +29,7 @@ namespace TheFulDeep {
 	template<typename U>
 	std::ostream & operator<<(std::ostream &out, const Stack<U> &stack)
 	{
-		size_t iter = 0;
-		for (auto i = stack.deque.begin(); i < stack.deque.end(); ++i) { out << stack.deque[iter] << "\n"; iter++; }
+		for (size_t i = 0; i < stack.deque.size(); i++) out << stack.deque[i] << "\n";
 		return out;
 	}
 }
