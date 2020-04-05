@@ -15,6 +15,8 @@ namespace TheFulDeep
 		std::shared_ptr<ListNode<T>> nextnode = nullptr;
 	public:
 		ListNode() = default;
+		ListNode<T>* GetNextNode()const { return nextnode.get(); }
+		T GetValue()const { return value; }
 	};
 
 
@@ -23,18 +25,12 @@ namespace TheFulDeep
 	{
 	private:
 		std::shared_ptr<ListNode<T>> head = nullptr;
+		ListNode<T>* end = nullptr;
 		size_t len = 0;
 
-		ListNode<T>* GetLastNode()
-		{
-			ListNode<T>* curnode = head.get();
-			if (head == nullptr) return nullptr;
-			while (curnode->nextnode != nullptr) curnode = curnode->nextnode.get();
-			return curnode;
-		}
 	public:
 		List() = default;
-		List(const T val) { head = std::shared_ptr<ListNode<T>>(new ListNode<T>); head->value = val; len = 1; }
+		List(const T val) { head = std::shared_ptr<ListNode<T>>(new ListNode<T>); head->value = val; end = head.get(); len = 1; }
 
 		size_t size()const { return len; }
 
@@ -42,15 +38,17 @@ namespace TheFulDeep
 
 		void push_back(const T val)
 		{
-			if (len == 0) { head = std::shared_ptr<ListNode<T>>(new ListNode<T>); head->value = val; len = 1; }
-			else { ListNode<T>* lastnode = GetLastNode(); lastnode->nextnode = std::shared_ptr<ListNode<T>>(new ListNode<T>); lastnode->nextnode->value = val; len++; }
+			if (len == 0) { *this = List<T>(val); }
+			else { end->nextnode = std::shared_ptr<ListNode<T>>(new ListNode<T>); end->nextnode->value = val; end = end->nextnode.get(); len++; }
 		}
 
-		void pop_front()
+		T pop_front()
 		{
 			if (head == nullptr) throw std::exception("can't pop");
+			T val = head->value;
 			head = head->nextnode;// shared_ptr сам очистит за собой
 			len--;
+			return val;
 		}
 
 		T& operator[](const size_t n)const//вообще можно было создать массив с адресами, и получать нужный ноуд через массив, но я решил не париться
@@ -64,5 +62,8 @@ namespace TheFulDeep
 			}
 			return curnode->value;
 		}
+
+
+		ListNode<T>* GetHead()const { return head.get(); }
 	};
 }
