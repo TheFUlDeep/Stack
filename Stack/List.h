@@ -27,10 +27,10 @@ namespace TheFulDeep
 
 		ListNode<T>* GetLastNode()
 		{
-			std::shared_ptr<ListNode<T>> curnode = head;
+			ListNode<T>* curnode = head.get();
 			if (head == nullptr) return nullptr;
-			while (curnode->nextnode != nullptr) curnode = curnode->nextnode;
-			return curnode.get();
+			while (curnode->nextnode != nullptr) curnode = curnode->nextnode.get();
+			return curnode;
 		}
 	public:
 		List() = default;
@@ -43,7 +43,7 @@ namespace TheFulDeep
 		void push_back(const T val)
 		{
 			if (len == 0) { head = std::shared_ptr<ListNode<T>>(new ListNode<T>); head->value = val; len = 1; }
-			else { auto lastnode = GetLastNode(); lastnode->nextnode = std::shared_ptr<ListNode<T>>(new ListNode<T>); lastnode->nextnode->value = val; len++; }
+			else { ListNode<T>* lastnode = GetLastNode(); lastnode->nextnode = std::shared_ptr<ListNode<T>>(new ListNode<T>); lastnode->nextnode->value = val; len++; }
 		}
 
 		void pop_front()
