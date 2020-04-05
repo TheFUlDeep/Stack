@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include <memory>
 
 namespace TheFulDeep
@@ -49,15 +49,15 @@ namespace TheFulDeep
 		void pop_front()
 		{
 			if (head == nullptr) throw std::exception("can't pop");
-			head = head->nextnode;// shared_ptr сам очистит за собой
+			head = head->nextnode;// shared_ptr СЃР°Рј РѕС‡РёСЃС‚РёС‚ Р·Р° СЃРѕР±РѕР№
 			len--;
 		}
 
-		T& operator[](const size_t n)const//вообще можно было создать массив с адресами, и получать нужный ноуд через массив, но я решил не париться
+		T& operator[](const size_t n)const//РІРѕРѕР±С‰Рµ РјРѕР¶РЅРѕ Р±С‹Р»Рѕ СЃРѕР·РґР°С‚СЊ РјР°СЃСЃРёРІ СЃ Р°РґСЂРµСЃР°РјРё, Рё РїРѕР»СѓС‡Р°С‚СЊ РЅСѓР¶РЅС‹Р№ РЅРѕСѓРґ С‡РµСЂРµР· РјР°СЃСЃРёРІ, РЅРѕ СЏ СЂРµС€РёР» РЅРµ РїР°СЂРёС‚СЊСЃСЏ
 		{
 			auto curnode = head;
 			if (curnode == nullptr) throw std::exception("can't get head");
-			for (size_t i = 0; i < n; i++)//буду проходить на 1 меньше указанного индекса
+			for (size_t i = 0; i < n; i++)//Р±СѓРґСѓ РїСЂРѕС…РѕРґРёС‚СЊ РЅР° 1 РјРµРЅСЊС€Рµ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РёРЅРґРµРєСЃР°
 			{
 				curnode = curnode->nextnode;
 				if (curnode == nullptr) throw std::exception("can't get node");
